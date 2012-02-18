@@ -62,6 +62,13 @@ $messages['gl'] = array(
 	'formatnum-desc' => 'Pasa formatnum ao number_format do PHP',
 );
 
+/** Hebrew (עברית)
+ * @author Amire80
+ */
+$messages['he'] = array(
+	'formatnum-desc' => 'העברת formatnum ל־number_format של PHP',
+);
+
 /** Upper Sorbian (Hornjoserbsce)
  * @author Michawiki
  */
