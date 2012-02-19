@@ -111,6 +111,13 @@ $messages['nl'] = array(
 	'formatnum-desc' => 'Geeft formatnum door aan number_format van PHP',
 );
 
+/** Polish (Polski)
+ * @author BeginaFelicysym
+ */
+$messages['pl'] = array(
+	'formatnum-desc' => 'Przekazuje formatnum do funkcji PHP number_format',
+);
+
 /** Piedmontese (Piemontèis)
  * @author Dragonòt
  */
