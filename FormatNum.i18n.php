@@ -48,6 +48,13 @@ $messages['dsb'] = array(
 	'formatnum-desc' => 'Formatěrujo licby we formaśe number_format z PHP',
 );
 
+/** Spanish (Español)
+ * @author Armando-Martin
+ */
+$messages['es'] = array(
+	'formatnum-desc' => 'Pasa formatnum a number_format de PHP',
+);
+
 /** French (Français)
  * @author Gomoko
  */
