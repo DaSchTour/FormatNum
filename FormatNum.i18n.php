@@ -55,6 +55,13 @@ $messages['es'] = array(
 	'formatnum-desc' => 'Pasa formatnum a number_format de PHP',
 );
 
+/** Persian (فارسی)
+ * @author ZxxZxxZ
+ */
+$messages['fa'] = array(
+	'formatnum-desc' => 'formatnum را به number_format پی‌اچ‌پی می‌دهد',
+);
+
 /** French (Français)
  * @author Gomoko
  */
