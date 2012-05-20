@@ -97,6 +97,13 @@ $messages['ia'] = array(
 	'formatnum-desc' => 'Passa formatnum a number_format de PHP',
 );
 
+/** Japanese (日本語)
+ * @author Shirayuki
+ */
+$messages['ja'] = array(
+	'formatnum-desc' => 'formatnum を PHP の number_format に渡す',
+);
+
 /** Colognian (Ripoarisch)
  * @author Purodha
  */
