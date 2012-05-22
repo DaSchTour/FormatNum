@@ -17,9 +17,11 @@ $messages['en'] = array(
 	'formatnum-desc'  => 'Passes formatnum to PHP\'s number_format',
 );
 
-/** Message documentation (Message documentation) */
+/** Message documentation (Message documentation)
+ * @author Beta16
+ */
 $messages['qqq'] = array(
-	'formatnum-desc' => 'Description for Special:Version',
+	'formatnum-desc' => '{{desc}}',
 );
 
 /** Asturian (Asturianu)
@@ -95,6 +97,13 @@ $messages['hsb'] = array(
  */
 $messages['ia'] = array(
 	'formatnum-desc' => 'Passa formatnum a number_format de PHP',
+);
+
+/** Italian (Italiano)
+ * @author Beta16
+ */
+$messages['it'] = array(
+	'formatnum-desc' => "Passa ''formatnum'' alla funzione PHP ''number_format''",
 );
 
 /** Japanese (日本語)
