@@ -113,6 +113,13 @@ $messages['ja'] = array(
 	'formatnum-desc' => 'formatnum を PHP の number_format に渡す',
 );
 
+/** Korean (한국어)
+ * @author 아라
+ */
+$messages['ko'] = array(
+	'formatnum-desc' => 'PHP의 number_format을 formatnum에 전달',
+);
+
 /** Colognian (Ripoarisch)
  * @author Purodha
  */
