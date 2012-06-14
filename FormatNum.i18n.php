@@ -24,7 +24,7 @@ $messages['qqq'] = array(
 	'formatnum-desc' => '{{desc}}',
 );
 
-/** Asturian (Asturianu)
+/** Asturian (asturianu)
  * @author Xuacu
  */
 $messages['ast'] = array(
@@ -50,7 +50,7 @@ $messages['dsb'] = array(
 	'formatnum-desc' => 'Formatěrujo licby we formaśe number_format z PHP',
 );
 
-/** Spanish (Español)
+/** Spanish (español)
  * @author Armando-Martin
  */
 $messages['es'] = array(
@@ -64,7 +64,7 @@ $messages['fa'] = array(
 	'formatnum-desc' => 'formatnum را به number_format پی‌اچ‌پی می‌دهد',
 );
 
-/** French (Français)
+/** French (français)
  * @author Gomoko
  */
 $messages['fr'] = array(
@@ -92,14 +92,14 @@ $messages['hsb'] = array(
 	'formatnum-desc' => 'Formatuje ličby we formaće number_format z PHP',
 );
 
-/** Interlingua (Interlingua)
+/** Interlingua (interlingua)
  * @author McDutchie
  */
 $messages['ia'] = array(
 	'formatnum-desc' => 'Passa formatnum a number_format de PHP',
 );
 
-/** Italian (Italiano)
+/** Italian (italiano)
  * @author Beta16
  */
 $messages['it'] = array(
@@ -134,7 +134,7 @@ $messages['lb'] = array(
 	'formatnum-desc' => 'Ännert fromatnumm op php number_format',
 );
 
-/** Macedonian (Македонски)
+/** Macedonian (македонски)
  * @author Bjankuloski06
  */
 $messages['mk'] = array(
@@ -148,7 +148,7 @@ $messages['nl'] = array(
 	'formatnum-desc' => 'Geeft formatnum door aan number_format van PHP',
 );
 
-/** Polish (Polski)
+/** Polish (polski)
  * @author BeginaFelicysym
  */
 $messages['pl'] = array(
@@ -162,7 +162,7 @@ $messages['pms'] = array(
 	'formatnum-desc' => 'A passa formatnum a number_format ëd PHP',
 );
 
-/** Russian (Русский)
+/** Russian (русский)
  * @author Александр Сигачёв
  */
 $messages['ru'] = array(
