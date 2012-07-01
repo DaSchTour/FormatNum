@@ -31,7 +31,7 @@ $messages['ast'] = array(
 	'formatnum-desc' => 'Pasa de formatnum a number_format de PHP',
 );
 
-/** Belarusian (Taraškievica orthography) (‪Беларуская (тарашкевіца)‬)
+/** Belarusian (Taraškievica orthography) (‪беларуская (тарашкевіца)‬)
  * @author Wizardist
  */
 $messages['be-tarask'] = array(
@@ -43,7 +43,7 @@ $messages['de'] = array(
 	'formatnum-desc' => 'Ermöglicht das Formatieren von Zahlen mit php number_format',
 );
 
-/** Lower Sorbian (Dolnoserbski)
+/** Lower Sorbian (dolnoserbski)
  * @author Michawiki
  */
 $messages['dsb'] = array(
@@ -71,7 +71,7 @@ $messages['fr'] = array(
 	'formatnum-desc' => 'Passe formatnum au number_format de php',
 );
 
-/** Galician (Galego)
+/** Galician (galego)
  * @author Toliño
  */
 $messages['gl'] = array(
@@ -85,7 +85,7 @@ $messages['he'] = array(
 	'formatnum-desc' => 'העברת formatnum ל־number_format של PHP',
 );
 
-/** Upper Sorbian (Hornjoserbsce)
+/** Upper Sorbian (hornjoserbsce)
  * @author Michawiki
  */
 $messages['hsb'] = array(
