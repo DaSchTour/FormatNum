@@ -169,3 +169,10 @@ $messages['ru'] = array(
 	'formatnum-desc' => 'Передаёт formatnum в функцию PHP number_format',
 );
 
+/** Tagalog (Tagalog)
+ * @author AnakngAraw
+ */
+$messages['tl'] = array(
+	'formatnum-desc' => 'Nagpapasa ng anyo ng bilang sa anyo_ng_bilang ng PHP',
+);
+
