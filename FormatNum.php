@@ -41,6 +41,7 @@ function efFormatNumParserFunction_Render( $parser, $param1 = 0, $param2 = 0, $p
 	if ( $param4 == '_' ){
 		$param4 = ' ';
 	}
+	$param2 = intval($param2);
 	$output = number_format( $param1, $param2, $param3, $param4 );
 	switch ($param4) {
 		case 't':
