@@ -1,8 +1,8 @@
 <?php
 class FormatNumHooks {
-	function efFormatNumParserFunction_Setup( $parser ) {
+	public function efFormatNumParserFunction_Setup( $parser ) {
 	# Set a function hook associating the "example" magic word with our function
-	$parser->setFunctionHook( 'formatnum', 'efFormatNumParserFunction_Render' );
+	$parser->setFunctionHook( 'formatnum', 'FormatNumHooks::efFormatNumParserFunction_Render' );
 	return true;
 	}
 
