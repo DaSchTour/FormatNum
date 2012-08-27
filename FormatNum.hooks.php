@@ -26,7 +26,12 @@ class FormatNumHooks {
 			$params[$element[0]] = $element[1];
 		}
 	}
-	$format= $params['format'];
+	if(array_key_exists('format',$params)) {
+		$format= $params['format'];
+	}
+	else {
+		$format = '';
+	}
 	if (isset($args[1])) {
 		$decs = intval($args[1]);
 	}
