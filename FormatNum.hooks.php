@@ -51,10 +51,10 @@ class FormatNumHooks {
 	elseif (isset($params['otsep'])) {
 		$otsep = $params['otsep'];
 	}
-	elseif ($commas > 1 && $points == 1) {
+	elseif ($commas > 1 && $points <= 1) {
 		$otsep = ',';
 	}
-	elseif ($points > 1 && $commas == 1) {
+	elseif ($points > 1 && $commas <= 1) {
 		$otsep = '.';
 	}
 	else {
