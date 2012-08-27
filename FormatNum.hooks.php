@@ -7,36 +7,43 @@ class FormatNumHooks {
 	}
 
 	function efFormatNumParserFunction_Render( &$parser ) {
-	# number | decimals | dec sep | thousend sep | orig thousend sep 	
+	# number | decimals | dec sep | thousend sep | orig thousend sep | min thousend	
 	# The parser function itself
 	# The input parameters are wikitext with templates expanded
 	# The output should be wikitext too
 	$args = func_get_args();
+	array_shift( $args );
 	$number_raw = $args[0];
+	$params = array();
+	foreach ($args as $key => $value) {
+		$element = explode( '=', $value);
+		unset($args[$key]);
+		$params[$element[0]] = $element[1]; 
+	}
 	$format= $args['format'];
 	if (!isset($args[1])) {
 		$decs = intval($args[1]);
 	}
-	else {
-		$decs = intval($args['decs']);
+	elseif (!isset($params['decs'])) {
+		$decs = intval($params['decs']);
 	}
 	if (!isset($args[2])) {
 		$dsep = $args[2];
 	}
-	else {
-		$dsep = $args['dsep'];
+	elseif (!isset($params['dsep'])) {
+		$dsep = $params['dsep'];
 	}
 	if (!isset($args[3])) {
 		$tsep = $args[3];
 	}
-	else {
-		$tsep = $args['tsep'];
+	elseif (!isset($params['tsep'])) {
+		$tsep = $params['tsep'];
 	}
 	if (!isset($args[4])) {
 		$otsep = $args[4];
 	}
-	else {
-		$otsep = $args['otsep'];
+	elseif (!isset($params['otsep'])) {
+		$otsep = $params['otsep'];
 	}
 	$mint = intval($args['mint']);
 	if ( $tsep == '_' ){
