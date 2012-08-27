@@ -1,0 +1,38 @@
+Extension '''FormatNum''' makes it easier to format numbers in the style you want, independent of language settings. For input "englisch" format is used with point as decimal seperator.
+
+== Usage ==
+* {{#formatnum:''number''|''number of decimals''|''decimal separator''|''thousand separator''|''old thousand separator''}}
+* {{#formatnum:''number''|decs=''number of decimals''|dsep=''decimal separator''|tsep=''thousand separator''|otsep=''old thousand separator''|format=''DIN or ISO''|mint=''minimal number to seperate thousands''}}
+
+* otsep: thousands seperator in the number given, that will be removed. for example when having an number like 123.456.789,123 and setting otsep=. will remove all points from the number before converting.
+* mint: the minimal number given to seperate thousands. for example when setting to 4 the number 1234 will remain as is and 12345 will be seperated to 12 345.
+
+== Examples ==
+:{{#formatnum: 2300.123|2|,|_}}
+:result: 2 300,12
+
+:{{#formatnum: 2300.123|2|.|,}}
+:result: 2,300.12
+
+:{{#formatnum: 2300.123|2}}
+:result: 2,300.12
+
+:{{#formatnum: 2300.123|2|,|t}}
+:result: 2&thinsp;300,12
+
+As ''thousand separator'' there can be also used the following parameters
+* n – will be &nbsp&#59;
+* t – will be &thinsp&#59;
+
+== Installation ==
+Download the files from github. But them in /extensions/FormatNum and but the following to your [[LocalSettings.php]]
+<syntaxhighlight lang=php>require_once( "$IP/extensions/FormatNum/FormatNum.php" );</syntaxhighlight>
+
+== Use Example ==
+On Wikipedia formatting of numbers is done with complex templates like [[:de:Vorlage:FormatZahl|this]]. With the #formatnum parser this would be a lot easier.
+
+== See also ==
+* [[Extension:NumberFormat]]
+
+== Links ==
+* [http://www.php.net/manual/en/function.number-format.php describtion of number_format at php.net]
