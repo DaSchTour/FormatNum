@@ -6,49 +6,55 @@ class FormatNumHooks {
 	return true;
 	}
 
-	function efFormatNumParserFunction_Render( $parser, $param1 = 0, $param2 = 2, $param3 = '.', $param4 = ',', $param5 = '.' ) {
+	function efFormatNumParserFunction_Render( &$parser ) {
 	# number | decimals | dec sep | thousend sep | orig thousend sep 	
 	# The parser function itself
 	# The input parameters are wikitext with templates expanded
 	# The output should be wikitext too
-	if ( $param4 == '_' ){
-		$param4 = ' ';
+	$args = func_get_args();
+	$number_raw = $args[0];
+	$format= $args['format'];
+	$tsep = $args['tsep'];
+	$dsep = $args['dsep'];
+	$otsep = $args['otsep'];
+	$decs = intval($args['decs']);
+	$mint = intval($args['mint']);
+	if ( $tsep == '_' ){
+		$tsep = ' ';
 	}
-	$param1 = str_replace ( $param5, '', $param1 );
-	if ( substr_count($param1, '.') == 1 ) {
-		$num_array = explode('.', $param1);
+	switch ($format) {
+		case 'DIN':
+			$dsep = ",";
+			$tsep = "t";
+			$mint = 4;
+		case 'ISO':
+			$dsep = ",";
+			$tsep = "t";
+			$mint = 3;			
+		default:
+			if (!isset($desc)) $decs=2;
+			if (!isset($tsep)) $tsep='t';
+			if (!isset($dsep)) $dsep=',';
+			if (!isset($mint)) $mint=0;
 	}
-	elseif ( substr_count($param1, ',') == 1 ) {
-		$num_array = explode(',', $param1);
+	$number_clean = str_replace ( $otsep, '', $number_raw );
+	if ( substr_count($number_clean, '.') == 1 ) {
+		$num_array = explode('.', $number_clean);
+	}
+	elseif ( substr_count($number_clean, ',') == 1 ) {
+		$num_array = explode(',', $number_clean);
 	}
 	else {
-		$num_array[0] = $param1;
+		$num_array[0] = $number_clean;
 	}
-	$number_raw = $num_array[0] . "." . $num_array[1];
+	$number = $num_array[0] . "." . $num_array[1];
 	$numlength = strlen($num_array[0]);
-	$number = floatval($number_raw);
-	$decs = intval($param2);
-	switch ($param3) {
-		case 'DIN':
-			$dec_point = ",";
-			$thousend_sep = "t";
-			$min_th_sep = 4;
-			break;
-		case 'ISO':
-			$dec_point = ",";
-			$thousend_sep = "t";
-			$min_th_sep = 3;			
-			break;
-		default:
-			$dec_point = $param3;
-			$thousend_sep = $param4;
-			$min_th_sep = 3;
+	$number = floatval($number);
+	if ($mint >= $numlength) {
+		$tsep = "";
 	}
-	if ($min_th_sep >= $numlength) {
-		$thousend_sep = "";
-	}
-	$output = number_format( $number, $decs, $dec_point, $thousend_sep );
-	switch ($thousend_sep) {
+	$output = number_format( $number, $decs, $dsep, $tsep );
+	switch ($tsep) {
 		case 't':
 			$output = str_replace ( 't', '&thinsp;', $output );
 			break;
