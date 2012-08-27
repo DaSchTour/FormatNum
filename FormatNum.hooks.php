@@ -14,10 +14,30 @@ class FormatNumHooks {
 	$args = func_get_args();
 	$number_raw = $args[0];
 	$format= $args['format'];
-	$tsep = $args['tsep'];
-	$dsep = $args['dsep'];
-	$otsep = $args['otsep'];
-	$decs = intval($args['decs']);
+	if (!isset($args[1])) {
+		$decs = intval($args[1]);
+	}
+	else {
+		$decs = intval($args['decs']);
+	}
+	if (!isset($args[2])) {
+		$dsep = $args[2];
+	}
+	else {
+		$dsep = $args['dsep'];
+	}
+	if (!isset($args[3])) {
+		$tsep = $args[3];
+	}
+	else {
+		$tsep = $args['tsep'];
+	}
+	if (!isset($args[4])) {
+		$otsep = $args[4];
+	}
+	else {
+		$otsep = $args['otsep'];
+	}
 	$mint = intval($args['mint']);
 	if ( $tsep == '_' ){
 		$tsep = ' ';
