@@ -14,6 +14,10 @@ class FormatNumHooks {
 	$args = func_get_args();
 	array_shift( $args );
 	$number_raw = $args[0];
+	
+	$points = substr_count($number_raw, '.');
+	$comma = substr_count($number_raw, ',');
+		
 	$params = array();
 	foreach ($args as $key => $value) {
 		if (substr_count($value, '=') == 1) {
@@ -47,6 +51,12 @@ class FormatNumHooks {
 	elseif (isset($params['otsep'])) {
 		$otsep = $params['otsep'];
 	}
+	elseif ($comma > 1 && $point == 1) {
+		$otsep = ',';
+	}
+	elseif ($point > 1 && $comma == 1) {
+		$otsep = '.';
+	}
 	else {
 		$otsep='';
 	}
@@ -69,7 +79,6 @@ class FormatNumHooks {
 			if (!isset($tsep)) $tsep='t';
 			if (!isset($dsep)) $dsep=',';
 			if (!isset($mint)) $mint=0;
-			if (!isset($otsep)) $otsep='';
 	}
 	if ( $tsep == '_' ){
 		$tsep = ' ';
