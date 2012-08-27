@@ -7,15 +7,23 @@ class FormatNumHooks {
 	}
 
 	function efFormatNumParserFunction_Render( $parser, $param1 = 0, $param2 = 2, $param3 = '.', $param4 = ',', $param5 = '.' ) {
-	# number | decimals | dec sep | thousend sep | orig_dec_sep 	
+	# number | decimals | dec sep | thousend sep | orig thousend sep 	
 	# The parser function itself
 	# The input parameters are wikitext with templates expanded
 	# The output should be wikitext too
 	if ( $param4 == '_' ){
 		$param4 = ' ';
 	}
-	$num_array = explode($param5, $param1);
-	$num_array[0] = intval($num_array[0]);
+	$param1 = str_replace ( $param5, '', $param1 );
+	if ( substr_count($param1, '.') == 1 ) {
+		$num_array = explode('.', $param1);
+	}
+	elseif ( substr_count($param1, ',') == 1 ) {
+		$num_array = explode(',', $param1);
+	}
+	else {
+		$num_array[0] = $param1;
+	}
 	$number_raw = $num_array[0] . "." . $num_array[1];
 	$numlength = strlen($num_array[0]);
 	$number = floatval($number_raw);
@@ -40,8 +48,14 @@ class FormatNumHooks {
 		$thousend_sep = "";
 	}
 	$output = number_format( $number, $decs, $dec_point, $thousend_sep );
-	$output = str_replace ( 't', '&thinsp;', $output );
-	$output = str_replace ( 'n', '&nbsp;', $output );
+	switch ($thousend_sep) {
+		case 't':
+			$output = str_replace ( 't', '&thinsp;', $output );
+			break;
+		case 'n':
+			$output = str_replace ( 'n', '&nbsp;', $output );
+			break;
+	}
 	return $output;
 	}	
 }
