@@ -15,6 +15,7 @@ class FormatNumHooks {
 		$param4 = ' ';
 	}
 	$num_array = explode($param5, $param1);
+	$num_array[0] = intval($num_array[0]);
 	$number_raw = $num_array[0] . "." . $num_array[1];
 	$numlength = strlen($num_array[0]);
 	$number = floatval($number_raw);
@@ -35,18 +36,12 @@ class FormatNumHooks {
 			$thousend_sep = $param4;
 			$min_th_sep = 3;
 	}
-	if ($min_th_sep > $numlength) {
+	if ($min_th_sep >= $numlength) {
 		$thousend_sep = "";
 	}
 	$output = number_format( $number, $decs, $dec_point, $thousend_sep );
-	switch ($param4) {
-		case 't':
-			$output = str_replace ( 't', '&thinsp;', $output );
-			break;
-		case 'n':
-			$output = str_replace ( 'n', '&nbsp;', $output );
-			break;
-	}
+	$output = str_replace ( 't', '&thinsp;', $output );
+	$output = str_replace ( 'n', '&nbsp;', $output );
 	return $output;
 	}	
 }
