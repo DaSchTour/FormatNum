@@ -16,7 +16,7 @@ class FormatNumHooks {
 	$number_raw = $args[0];
 	
 	$points = substr_count($number_raw, '.');
-	$comma = substr_count($number_raw, ',');
+	$commas = substr_count($number_raw, ',');
 		
 	$params = array();
 	foreach ($args as $key => $value) {
@@ -51,10 +51,10 @@ class FormatNumHooks {
 	elseif (isset($params['otsep'])) {
 		$otsep = $params['otsep'];
 	}
-	elseif ($comma > 1 && $point == 1) {
+	elseif ($commas > 1 && $points == 1) {
 		$otsep = ',';
 	}
-	elseif ($point > 1 && $comma == 1) {
+	elseif ($points > 1 && $commas == 1) {
 		$otsep = '.';
 	}
 	else {
