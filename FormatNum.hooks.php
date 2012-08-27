@@ -16,53 +16,63 @@ class FormatNumHooks {
 	$number_raw = $args[0];
 	$params = array();
 	foreach ($args as $key => $value) {
-		$element = explode( '=', $value);
-		unset($args[$key]);
-		$params[$element[0]] = $element[1]; 
+		if (substr_count($value, '=') == 1) {
+			$element = explode( '=', $value);
+			unset($args[$key]);
+			$params[$element[0]] = $element[1];
+		}
 	}
-	$format= $args['format'];
-	if (!isset($args[1])) {
+	$format= $params['format'];
+	if (isset($args[1])) {
 		$decs = intval($args[1]);
 	}
-	elseif (!isset($params['decs'])) {
+	elseif (isset($params['decs'])) {
 		$decs = intval($params['decs']);
 	}
-	if (!isset($args[2])) {
+	if (isset($args[2])) {
 		$dsep = $args[2];
 	}
-	elseif (!isset($params['dsep'])) {
+	elseif (isset($params['dsep'])) {
 		$dsep = $params['dsep'];
 	}
-	if (!isset($args[3])) {
+	if (isset($args[3])) {
 		$tsep = $args[3];
 	}
-	elseif (!isset($params['tsep'])) {
+	elseif (isset($params['tsep'])) {
 		$tsep = $params['tsep'];
 	}
-	if (!isset($args[4])) {
+	if (isset($args[4])) {
 		$otsep = $args[4];
 	}
-	elseif (!isset($params['otsep'])) {
+	elseif (isset($params['otsep'])) {
 		$otsep = $params['otsep'];
 	}
-	$mint = intval($args['mint']);
-	if ( $tsep == '_' ){
-		$tsep = ' ';
+	else {
+		$otsep='';
+	}
+	if (isset($params['mint'])) {
+		$mint = intval($params['mint']);
 	}
 	switch ($format) {
 		case 'DIN':
 			$dsep = ",";
 			$tsep = "t";
 			$mint = 4;
+			break;
 		case 'ISO':
 			$dsep = ",";
 			$tsep = "t";
-			$mint = 3;			
+			$mint = 3;
+			break;
 		default:
 			if (!isset($desc)) $decs=2;
 			if (!isset($tsep)) $tsep='t';
 			if (!isset($dsep)) $dsep=',';
 			if (!isset($mint)) $mint=0;
+			if (!isset($otsep)) $otsep='';
+	}
+	if ( $tsep == '_' ){
+		$tsep = ' ';
 	}
 	$number_clean = str_replace ( $otsep, '', $number_raw );
 	if ( substr_count($number_clean, '.') == 1 ) {
@@ -74,7 +84,12 @@ class FormatNumHooks {
 	else {
 		$num_array[0] = $number_clean;
 	}
-	$number = $num_array[0] . "." . $num_array[1];
+	if (count($num_array) > 1) {
+		$number = $num_array[0] . "." . $num_array[1];
+	}
+	else {
+		$number = $num_array[0];
+	}
 	$numlength = strlen($num_array[0]);
 	$number = floatval($number);
 	if ($mint >= $numlength) {
