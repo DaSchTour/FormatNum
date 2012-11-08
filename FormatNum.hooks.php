@@ -80,7 +80,7 @@ class FormatNumHooks {
 			$mint = 3;
 			break;
 		default:
-			if (!isset($desc)) $decs=2;
+			if (!isset($decs)) $decs=2;
 			if (!isset($tsep)) $tsep='t';
 			if (!isset($dsep)) $dsep=',';
 			if (!isset($mint)) $mint=0;
