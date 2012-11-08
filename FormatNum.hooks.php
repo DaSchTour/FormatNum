@@ -1,22 +1,29 @@
 <?php
 class FormatNumHooks {
+	/*
+	@param parser from mediawiki
+	@return must return true for next prasers
+	*/
 	public function efFormatNumParserFunction_Setup( $parser ) {
-	# Set a function hook associating the "example" magic word with our function
 	$parser->setFunctionHook( 'formatnum', 'FormatNumHooks::efFormatNumParserFunction_Render' );
 	return true;
 	}
 
+	/*
+	@param parser from mediawiki
+	@return string from number_format
+	*/
 	function efFormatNumParserFunction_Render( &$parser ) {
-	# number | decimals | dec sep | thousend sep | orig thousend sep | min thousend	
-	# The parser function itself
-	# The input parameters are wikitext with templates expanded
-	# The output should be wikitext too
+	/* number | decimals | dec sep | thousend sep | orig thousend sep | min thousend	
+	 The parser function itself
+	 The input parameters are wikitext with templates expanded
+	 The output should be wikitext too */
+	
+	/* parse arguments */
 	$args = func_get_args();
 	array_shift( $args );
+	/* first arg is always the number */
 	$number_raw = $args[0];
-	
-	$points = substr_count($number_raw, '.');
-	$commas = substr_count($number_raw, ',');
 		
 	$params = array();
 	foreach ($args as $key => $value) {
@@ -32,42 +39,60 @@ class FormatNumHooks {
 	else {
 		$format = '';
 	}
+	
+	/* second arg or 'decs' may be number of decimals */
 	if (isset($args[1])) {
 		$decs = intval($args[1]);
 	}
 	elseif (isset($params['decs'])) {
 		$decs = intval($params['decs']);
 	}
+	
+	/* third arg or 'dsep' may be decimal seperator */
 	if (isset($args[2])) {
 		$dsep = $args[2];
 	}
 	elseif (isset($params['dsep'])) {
 		$dsep = $params['dsep'];
 	}
+	
+	/* fourth arg or 'tsep' may be thousand seperator */
 	if (isset($args[3])) {
 		$tsep = $args[3];
 	}
 	elseif (isset($params['tsep'])) {
 		$tsep = $params['tsep'];
 	}
+	
+	/* fifth arg or 'otsep' may be original/old thousand seperator */
 	if (isset($args[4])) {
 		$otsep = $args[4];
 	}
 	elseif (isset($params['otsep'])) {
 		$otsep = $params['otsep'];
 	}
-	elseif ($commas > 1 && $points <= 1) {
-		$otsep = ',';
+	
+	/* count number of points and commas to guess original thousand seperator if not set */
+	if (!isset($otsep)) {
+		$points = substr_count($number_raw, '.');
+		$commas = substr_count($number_raw, ',');
+		if ($commas > 1 && $points <= 1) {
+			$otsep = ',';
+		}
+		elseif ($points > 1 && $commas <= 1) {
+			$otsep = '.';
+		}
+		else {
+			$otsep='';
+		}
 	}
-	elseif ($points > 1 && $commas <= 1) {
-		$otsep = '.';
-	}
-	else {
-		$otsep='';
-	}
+	
+	/* 'mint' is the minimum number to seperated thousands */
 	if (isset($params['mint'])) {
 		$mint = intval($params['mint']);
 	}
+	
+	/* predefined format, the short way */
 	switch ($format) {
 		case 'DIN':
 			$dsep = ",";
@@ -88,6 +113,8 @@ class FormatNumHooks {
 	if ( $tsep == '_' ){
 		$tsep = ' ';
 	}
+	
+	/* Cleanup */
 	$number_clean = str_replace ( $otsep, '', $number_raw );
 	if ( substr_count($number_clean, '.') == 1 ) {
 		$num_array = explode('.', $number_clean);
@@ -104,12 +131,17 @@ class FormatNumHooks {
 	else {
 		$number = $num_array[0];
 	}
+	
+	/* length of the number to check if seperation of thousands applies */
 	$numlength = strlen($num_array[0]);
 	$number = floatval($number);
 	if ($mint >= $numlength) {
 		$tsep = "";
 	}
+	/* format number and generate output */
 	$output = number_format( $number, $decs, $dsep, $tsep );
+	
+	/* for non-breaking space replace string placeholder with the HTML-thing */
 	switch ($tsep) {
 		case 't':
 			$output = str_replace ( 't', '&thinsp;', $output );
