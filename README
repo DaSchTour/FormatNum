@@ -1,11 +1,11 @@
-Extension '''FormatNum''' makes it easier to format numbers in the style you want, independent of language settings. For input "englisch" format is used with point as decimal seperator.
+Extension '''FormatNum''' makes it easier to format numbers in the style you want, independent of language settings. For input "english" format is used with point as decimal separator.
 
 == Usage ==
 * {{#formatnum:''number''|''number of decimals''|''decimal separator''|''thousand separator''|''old thousand separator''}}
-* {{#formatnum:''number''|decs=''number of decimals''|dsep=''decimal separator''|tsep=''thousand separator''|otsep=''old thousand separator''|format=''DIN or ISO''|mint=''minimal number to seperate thousands''}}
+* {{#formatnum:''number''|decs=''number of decimals''|dsep=''decimal separator''|tsep=''thousand separator''|otsep=''old thousand separator''|format=''DIN or ISO''|mint=''minimal number to separate thousands''}}
 
-* otsep: thousands seperator in the number given, that will be removed. for example when having an number like 123.456.789,123 and setting otsep=. will remove all points from the number before converting.
-* mint: the minimal number given to seperate thousands. for example when setting to 4 the number 1234 will remain as is and 12345 will be seperated to 12 345.
+* otsep: thousands separator in the number given, that will be removed. For example when having a number like 123.456.789,123 and setting otsep=. will remove all points from the number before converting.
+* mint: the minimal number given to separate thousands. For example when setting to 4 the number 1234 will remain as is and 12345 will be separated to 12 345.
 
 == Examples ==
 :{{#formatnum: 2300.123|2|,|_}}
@@ -20,12 +20,12 @@ Extension '''FormatNum''' makes it easier to format numbers in the style you wan
 :{{#formatnum: 2300.123|2|,|t}}
 :result: 2&thinsp;300,12
 
-As ''thousand separator'' there can be also used the following parameters
+As ''thousand separator'' the following parameters can be also used
 * n – will be &nbsp&#59;
 * t – will be &thinsp&#59;
 
 == Installation ==
-Download the files from github. But them in /extensions/FormatNum and but the following to your [[LocalSettings.php]]
+Download the files from github. Put them in /extensions/FormatNum and add the following to your [[LocalSettings.php]]
 <syntaxhighlight lang=php>require_once( "$IP/extensions/FormatNum/FormatNum.php" );</syntaxhighlight>
 
 == Use Example ==
@@ -33,6 +33,7 @@ On Wikipedia formatting of numbers is done with complex templates like [[:de:Vor
 
 == See also ==
 * [[Extension:NumberFormat]]
+* [[Bugzilla:40422]] - review and deployment request
 
 == Links ==
-* [http://www.php.net/manual/en/function.number-format.php describtion of number_format at php.net]
+* [http://www.php.net/manual/en/function.number-format.php description of number_format at php.net]
