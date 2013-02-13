@@ -17,7 +17,7 @@ $wgExtensionCredits['parserhook'][] = array (
 	'url'=>'http://www.mediawiki.org/wiki/Extension:FormatNum',
 	'descriptionmsg' => 'formatnum-desc',
 	'author'=>'[http://www.dasch-tour.de DaSch]',
-	'version'=>'0.5.2',
+	'version'=>'0.6.0',
 );
 $dir = dirname( __FILE__ ) . '/';
 

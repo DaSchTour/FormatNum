@@ -18,7 +18,8 @@ class FormatNumHooks {
 	 The parser function itself
 	 The input parameters are wikitext with templates expanded
 	 The output should be wikitext too */
-	
+	global $wgLanguageCode;
+	$lang = $wgLanguageCode;
 	/* parse arguments */
 	$args = func_get_args();
 	array_shift( $args );
@@ -34,10 +35,10 @@ class FormatNumHooks {
 		}
 	}
 	if(array_key_exists('format',$params)) {
-		$format= $params['format'];
+		$format = $params['format'];
 	}
 	else {
-		$format = '';
+		$format = NULL;
 	}
 	
 	/* second arg or 'decs' may be number of decimals */
@@ -92,6 +93,11 @@ class FormatNumHooks {
 		$mint = intval($params['mint']);
 	}
 	
+	/* use language code as default format when nothing is set */
+	if (!isset($desp) && !isset($tsep) && !isset($format)) {
+		$format = strtoupper($lang);
+	}
+	
 	/* predefined format, the short way */
 	switch ($format) {
 		case 'DIN':
@@ -102,6 +108,11 @@ class FormatNumHooks {
 		case 'ISO':
 			$dsep = ",";
 			$tsep = "t";
+			$mint = 3;
+			break;
+		case 'EN':
+			$dsep = ".";
+			$tsep = ",";
 			$mint = 3;
 			break;
 		default:
