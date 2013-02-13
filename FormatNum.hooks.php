@@ -19,7 +19,6 @@ class FormatNumHooks {
 	 The input parameters are wikitext with templates expanded
 	 The output should be wikitext too */
 	global $wgLanguageCode;
-	$lang = $wgLanguageCode;
 	/* parse arguments */
 	$args = func_get_args();
 	array_shift( $args );
@@ -95,11 +94,14 @@ class FormatNumHooks {
 	
 	/* use language code as default format when nothing is set */
 	if (!isset($desp) && !isset($tsep) && !isset($format)) {
-		$format = strtoupper($lang);
+		/* ignoring language variants */
+		$lang = explode('-',$wgLanguageCode);
+		$format = strtoupper($lang[0]);
 	}
 	
 	/* predefined format, the short way */
 	switch ($format) {
+		case 'DE':
 		case 'DIN':
 			$dsep = ",";
 			$tsep = "t";
