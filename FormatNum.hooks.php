@@ -1,18 +1,32 @@
 <?php
+/**
+ * Javascript Slideshow
+ * Javascript Slideshow Hooks
+ *
+ * @author 		@See $wgExtensionCredits
+ * @license		GPL
+ * @package		FormatNum
+ * @addtogroup  Extensions
+ * @link		http://www.mediawiki.org/wiki/Extension:FormatNum
+ *
+ **/
+
 class FormatNumHooks {
-	/*
-	@param parser from mediawiki
-	@return must return true for next prasers
-	*/
+	/**
+	 * Setup parser function
+	 * @param parser from mediawiki
+	 * @return must return true for next prasers
+	 **/
 	public function efFormatNumParserFunction_Setup( $parser ) {
 	$parser->setFunctionHook( 'formatnum', 'FormatNumHooks::efFormatNumParserFunction_Render' );
 	return true;
 	}
 
-	/*
-	@param parser from mediawiki
-	@return string from number_format
-	*/
+	/**
+	 * Parser function
+	 * @param parser from mediawiki
+	 * @return string from number_format
+	 **/
 	function efFormatNumParserFunction_Render( &$parser ) {
 	/* number | decimals | dec sep | thousend sep | orig thousend sep | min thousend	
 	 The parser function itself
@@ -106,16 +120,19 @@ class FormatNumHooks {
 			$dsep = ",";
 			$tsep = "t";
 			$mint = 4;
+			if (!isset($decs)) $decs=2;
 			break;
 		case 'ISO':
 			$dsep = ",";
 			$tsep = "t";
 			$mint = 3;
+			if (!isset($decs)) $decs=2;
 			break;
 		case 'EN':
 			$dsep = ".";
 			$tsep = ",";
 			$mint = 3;
+			if (!isset($decs)) $decs=2;
 			break;
 		default:
 			if (!isset($decs)) $decs=2;
@@ -149,7 +166,7 @@ class FormatNumHooks {
 	$numlength = strlen($num_array[0]);
 	$number = floatval($number);
 	if ($mint >= $numlength) {
-		$tsep = "";
+		$tsep = '';
 	}
 	/* format number and generate output */
 	$output = number_format( $number, $decs, $dsep, $tsep );
