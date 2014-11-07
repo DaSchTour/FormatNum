@@ -1,5 +1,5 @@
 {
-	"name": "mediawiki/FormatNum",
+	"name": "mediawiki/format-num",
 	"type": "mediawiki-extension",
 	"description": "Extension FormatNum makes it easier to format numbers in the style you want, independent of language settings. For input 'english' format is used with point as decimal separator.",
 	"keywords": [
